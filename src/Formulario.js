@@ -1,8 +1,16 @@
 import { View, Text, TextInput, TouchableWithoutFeedback, Animated } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from '../styles/Formulario.jsx';
 import { Picker } from '@react-native-picker/picker'
 const Formulario = () => {
+
+    const [animation] = useState(new Animated.Value(1))
+    const animationEntrada = ()=>{
+
+    }
+    const animationSalida = ()=>{
+        
+    }
     return (
         <>
             <View style={styles.form}>
@@ -26,7 +34,10 @@ const Formulario = () => {
                         <Picker.Item label='Peru' value='PE' />
                     </Picker>
                 </View>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                    onPressIn={()=> animationEntrada()}
+                    onPressOut={()=> animationSalida()}
+                >
 
                     <View style={styles.btn}>
                         <Text style={styles.btnText}>Buscar Clima</Text>
