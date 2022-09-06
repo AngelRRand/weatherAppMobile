@@ -1,10 +1,11 @@
 import { Text, View, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Formulario from './src/Formulario';
 import styles from './styles/App.jsx';
+import APIKEY from './api';
 import { useState, useEffect } from 'react';
 export default function App() {
 
-  const { APIKEY } = process.env;
+  console.log(APIKEY)
   const [busqueda, setbusqueda ] = useState({
     ciudad: '',
     pais:''
