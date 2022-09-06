@@ -28,14 +28,15 @@ const Formulario = ({busqueda, setbusqueda, setConsultar}) => {
     const animationEntrada = ()=>{
         Animated.spring(animation, {
             toValue: 0.98,
-            
+            useNativeDriver: true
         }).start();
     }
     const animationSalida = ()=>{
         Animated.spring(animation, {
             toValue: 1,
             friction:3,
-            tension:30
+            tension:30,
+            useNativeDriver: true
         }).start();
     }
     const styleAnimation ={
