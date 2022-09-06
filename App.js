@@ -1,5 +1,6 @@
 import { Alert, View, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import Formulario from './src/Formulario';
+import Formulario from './src/Formulario.js';
+import Clima from './src/Clima.js'
 import styles from './styles/App.jsx';
 import APIKEY from './api';
 import { useState, useEffect } from 'react';
@@ -11,11 +12,12 @@ export default function App() {
   });
   const [consultar, setConsultar] = useState(false);
   const [resultado, setResultado] = useState({});
-  console.log(resultado)
+  const [bgColor, setBgColor] = useState('#e0e0e0');
+
   const { ciudad, pais } = busqueda
 
   useEffect(() => {
-    const consultarClima=async()=>{
+    const consultarClima = async () => {
 
       if (consultar) {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${APIKEY}`
@@ -24,9 +26,28 @@ export default function App() {
           const resultado = await resp.json()
           setResultado(resultado)
           setConsultar(false)
+
+          //Cambiar el color del fondo
+
+          const kelvin = 273.15;
+          const {main} = resultado;
+          const actual = main.temp - kelvin;
+
+          if(actual < 10){
+            setBgColor('#85ddff')
+          } else if(actual >= 10 && actual < 25){
+            setBgColor('#ffe985')
+          } else{
+            setBgColor('#ff886b')
+          }
+
+          return;
         } catch (error) {
           mostrarAlerta()
         }
+      }
+      if (resultado.cod === '404') {
+        mostrarAlerta()
       }
     }
     consultarClima()
@@ -47,18 +68,25 @@ export default function App() {
   const ocultarTeclado = () => {
     Keyboard.dismiss();
   }
+  const bgApp = {
+    backgroundColor: bgColor
+  }
   return (
 
     <>
       <StatusBar />
       <TouchableWithoutFeedback onPress={() => ocultarTeclado()}>
-        <View style={styles.app}>
+        <View style={[styles.app, bgApp]}>
           <View style={styles.container}>
+            <Clima
+              resultado={resultado}
+            />
             <Formulario
               busqueda={busqueda}
               setbusqueda={setbusqueda}
               setConsultar={setConsultar}
             />
+
           </View>
         </View>
       </TouchableWithoutFeedback>

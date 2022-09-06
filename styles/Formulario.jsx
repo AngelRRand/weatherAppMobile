@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     input: {
         padding: 10,
         height: 50,
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff',
         fontSize: 22,
         marginBottom: 20,
         textAlign: 'center'
@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
         marginTop: 50,
         backgroundColor: '#1a1a1a',
         textAlign: 'center',
-        
         padding: 20,
     },
     btnText: {
