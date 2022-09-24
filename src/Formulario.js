@@ -76,7 +76,7 @@ const Formulario = ({busqueda, setbusqueda, setConsultar}) => {
                 >
 
                     <Animated.View style={[styles.btn, styleAnimation]}>
-                        <Text style={styles.btnText}>Buscar Clima</Text>
+                        <Text style={styles.btnText}>Clima</Text>
                     </Animated.View>
 
                 </TouchableWithoutFeedback>
